@@ -63,7 +63,7 @@ return [
             'driver' => 'pgsql',
             'host' => $db_config['host'],
             'port' => env('DB_PORT', '5432'),
-            'database' => $db_config['dtabase'],
+            'database' => $db_config['database'],
             'username' => $db_config['username'],
             'password' => $db_config['password'],
             'charset' => 'utf8',
