@@ -30,6 +30,14 @@ class User extends Authenticatable
 
     protected $table = "users";
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->activation_token = str_random(30);
+        });
+    }
 
     /**
      * get gravatar.com avatar
