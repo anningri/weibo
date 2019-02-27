@@ -33,7 +33,10 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show',compact('user'));
+        $statuses = $user->statuses()
+                          ->orderby('created_at', 'desc')
+                          ->paginate(30);
+        return view('users.show',compact('user', 'statuses'));
     }
 
     public function store(Request $request)
@@ -73,6 +76,7 @@ class UsersController extends Controller
 
         $user->activated = true;
         $user->activation_token = null;
+        $user->email_verified_at = now();
         $user->save();
 
         Auth::login($user);
